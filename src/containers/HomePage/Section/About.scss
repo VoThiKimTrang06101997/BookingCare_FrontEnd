@@ -1,0 +1,35 @@
+.section-about {
+    padding      : 0 100px;
+    background   : #f5f5f5;
+
+    .section-about-header {
+        padding    : 20px 10px;
+        font-size  : 22px;
+        font-weight: 600;
+    }
+
+    .section-about-content {
+        display: flex;
+        gap    : 15px;
+        width  : 100%;
+
+        .content-left {
+            width: 60%;
+        }
+
+        .content-right {
+            width: 40%;
+
+            p {
+                text-align : justify;
+                font-style : italic;
+                color      : green;
+                font-weight: 600;
+                font-size  : 25px;
+                margin-top : 100px;
+                padding    : 15px;
+            }
+        }
+
+    }
+}

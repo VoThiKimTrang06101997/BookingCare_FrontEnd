@@ -1,0 +1,68 @@
+.section-specialty {
+    height    : 350px;
+    background: #f5f5f5;
+
+    .specialty-container {
+        margin        : 0 100px;
+        display       : flex;
+        flex-direction: column;
+
+        .specialty-header {
+            height       : 60px;
+            margin-bottom: 30px;
+            padding-top  : 30px;
+
+            .title-section {
+                // font-size  : 22px;
+                font-weight: 600;
+                font       : 22px/1.5 'Montserrat', sans-serif;
+            }
+
+            .btn-section {
+                float         : right;
+                padding       : 10px 15px;
+                border        : none;
+                outline       : none;
+                display       : block;
+                background    : #ebebeb;
+                color         : black;
+                cursor        : pointer;
+                text-transform: uppercase;
+
+                &:hover {
+                    color     : white;
+                    background: #f7d800;
+                }
+
+            }
+        }
+
+        .specialty-body {
+            .specialty-customize {
+                .bg-image {
+                    width              : 350px;
+                    height             : 180px;
+                    background         : url('../../../assets/images/specialty/co-xuong-khop.jpg');
+                    background-position: center center;
+                    background-repeat  : no-repeat;
+                    background-size    : cover;
+                    background-color   : #eee;
+                }
+
+                .title {
+                    color      : #111;
+                    padding    : 5px 0;
+                    font-size  : 13px;
+                    margin-left: -230px;
+                    cursor     : pointer;
+
+                    &:hover {
+                        color: #45c3d2;
+                        ;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
