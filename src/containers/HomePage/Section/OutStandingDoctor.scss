@@ -1,3 +1,4 @@
+
 .section-outstanding-doctor {
     height    : 330px;
     background: #f5f5f5;
@@ -40,6 +41,8 @@
         .section-body {
             .outstanding-doctor-customize {
                 padding: 5px;
+                cursor: pointer;
+        
 
                 .customize-border {
                     border: 1px solid orange;
@@ -52,7 +55,7 @@
                         .bg-image {
                             width              : 120px;
                             height             : 120px;
-                            background         : url('../../../assets/images/outstanding-doctor/doctor.jpg');
+                            // background         : url('../../../assets/images/outstanding-doctor/doctor.jpg');
                             background-position: center center;
                             background-repeat  : no-repeat;
                             background-size    : cover;

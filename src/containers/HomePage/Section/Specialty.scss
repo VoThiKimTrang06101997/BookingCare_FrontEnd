@@ -42,18 +42,18 @@
                 .bg-image {
                     width              : 350px;
                     height             : 180px;
-                    background         : url('../../../assets/images/specialty/co-xuong-khop.jpg');
+                    // background         : url('../../../assets/images/specialty/co-xuong-khop.jpg');
                     background-position: center center;
                     background-repeat  : no-repeat;
                     background-size    : cover;
                     background-color   : #eee;
                 }
 
-                .title {
+                .specialty-name {
                     color      : #111;
-                    padding    : 5px 0;
-                    font-size  : 13px;
-                    margin-left: -230px;
+                    padding    : 10px 0;
+                    font-size  : 18px;
+                    // font-weight: bold;
                     cursor     : pointer;
 
                     &:hover {

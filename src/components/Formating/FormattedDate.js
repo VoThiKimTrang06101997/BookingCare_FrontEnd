@@ -4,7 +4,7 @@ import moment from 'moment';
 /** For valid format please see <a href="https://momentjs.com/docs/#/displaying/">Moment format options</a> */
 const dateFormat = 'DD/MM/YYYY';
 
-className FormattedDate extends Component {
+class FormattedDate extends Component {
 
     render() {
         const { format, value, ...otherProps } = this.props;

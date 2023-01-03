@@ -9,7 +9,7 @@ const isAlphaNumericChar = keycode => {
     return (keycode >= 48 && keycode <= 57) || (keycode >= 65 && keycode <= 90);
 };
 
-className InputSuggestion extends React.Component {
+class InputSuggestion extends React.Component {
     constructor() {
         super();
 

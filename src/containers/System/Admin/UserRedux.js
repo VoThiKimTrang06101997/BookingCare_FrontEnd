@@ -11,6 +11,7 @@ import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import { createNewUser } from "./../../../store/actions/adminActions";
 import TableMangageUser from "./TableMangageUser";
+import CommonUtils from "../../../utils/CommonUtils";
 
 class UserRedux extends Component {
   constructor(props) {
@@ -65,7 +66,7 @@ class UserRedux extends Component {
       let arrGenders = this.props.genderRedux;
       this.setState({
         genderArr: arrGenders,
-        gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : "",
+        gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : "",
       });
     }
 
@@ -74,7 +75,7 @@ class UserRedux extends Component {
 
       this.setState({
         roleArr: arrRoles,
-        role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : "",
+        role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : "",
       });
     }
 
@@ -83,7 +84,7 @@ class UserRedux extends Component {
       this.setState({
         positionArr: arrPositions,
         position:
-          arrPositions && arrPositions.length > 0 ? arrPositions[0].key : "",
+          arrPositions && arrPositions.length > 0 ? arrPositions[0].keyMap : "",
       });
     }
 
@@ -99,10 +100,10 @@ class UserRedux extends Component {
         lastName: "",
         phoneNumber: "",
         address: "",
-        gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : "",
+        gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : "",
         position:
-          arrPositions && arrPositions.length > 0 ? arrPositions[0].key : "",
-        role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : "",
+          arrPositions && arrPositions.length > 0 ? arrPositions[0].keyMap : "",
+        role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : "",
         avatar: "",
         action: CRUD_ACTIONS.CREATE
       }, 
@@ -114,14 +115,16 @@ class UserRedux extends Component {
   }
 
   // e.preventDefault() => Ngăn Load lại trang
-  handleOnChangeImage = (event) => {
+  handleOnChangeImage = async (event) => {
     let uploadFile = event.target.files;
     let file = uploadFile[0];
     if (file) {
+      let base64 = await CommonUtils.getBase64(file);
+      console.log("Check Base64 Image: ", base64)
       let objectUrl = URL.createObjectURL(file);
       this.setState({
         previewImgURL: objectUrl,
-        avatar: file,
+        avatar: base64,
       });
       // console.log("Check File 0: ", objectUrl)
     }
@@ -153,6 +156,7 @@ class UserRedux extends Component {
         gender: this.state.gender,
         roleId: this.state.role,
         positionId: this.state.position,
+        avatar: this.state.avatar
       });
     }
 
@@ -218,6 +222,19 @@ class UserRedux extends Component {
   };
 
   handleEditUserFromParent = (user) => {
+    let imageBase64 = '';
+    if(user.image) {
+      /** Cách Code 1:
+       *  const imageBuffer = Buffer.from(JSON.stringify(user.image));
+      imageBase64 = `data:image/jpeg;base64,${imageBuffer.toString('base64')}`;     
+       */
+
+      // Cách Code 2:
+      imageBase64 = new Buffer(user.image, 'base64').toString('binary')
+     
+    }
+   
+
     console.log("Check handle Edit User From Parent: ", user)
     this.setState({
       email: user.email,
@@ -230,9 +247,14 @@ class UserRedux extends Component {
       position:user.positionId,
       role: user.roleId,
       avatar: "",
+      previewImgURL: imageBase64,
       action: CRUD_ACTIONS.EDIT,
       userEditId: user.id
-    })
+    }, 
+    // () => {
+    //   console.log("Check base64: ", this.state)
+    // }
+    )
   }
 
   render() {
@@ -265,7 +287,7 @@ class UserRedux extends Component {
         <div className="user-redux-body">
           <div className="container">
             <div className="row">
-              <div className="col-12 my-3">
+              <div className="col-12 my-3 text-success">
                 <FormattedMessage id="manage-user.add" />
               </div>
 
@@ -370,6 +392,7 @@ class UserRedux extends Component {
                 <select
                   className="form-control"
                   value={gender}
+                  // value={gender == null ? '' : gender}
                   onChange={(event) => {
                     this.onChangeInput(event, "gender");
                   }}
@@ -378,7 +401,7 @@ class UserRedux extends Component {
                     genders.length > 0 &&
                     genders.map((item, index) => {
                       return (
-                        <option key={index} value={item.key}>
+                        <option key={index} value={item.keyMap}>
                           {language === LANGUAGES.VI
                             ? item.value_vi
                             : item.value_en}
@@ -404,7 +427,7 @@ class UserRedux extends Component {
                     positions.length > 0 &&
                     positions.map((item, index) => {
                       return (
-                        <option key={index} value={item.key}>
+                        <option key={index} value={item.keyMap}>
                           {language === LANGUAGES.VI
                             ? item.value_vi
                             : item.value_en}
@@ -429,7 +452,7 @@ class UserRedux extends Component {
                     roles.length > 0 &&
                     roles.map((item, index) => {
                       return (
-                        <option key={index} value={item.key}>
+                        <option key={index} value={item.keyMap}>
                           {language === LANGUAGES.VI
                             ? item.value_vi
                             : item.value_en}
@@ -448,8 +471,9 @@ class UserRedux extends Component {
                     className="form-control"
                     id="previewImg"
                     type="file"
+                    htmlFor='image'
                     hidden
-                    value={avatar}
+                    // value={avatar}
                     onChange={(event) => this.handleOnChangeImage(event)}
                   />
                   <label htmlFor="previewImg" className="label-upload mt-2">

@@ -12,7 +12,7 @@ import './DatePicker.scss';
 //     />;
 // };
 
-className DatePicker extends Component {
+class DatePicker extends Component {
 
     flatpickrNode = null;
 
