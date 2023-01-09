@@ -141,7 +141,8 @@ export class BookingModal extends Component {
       email: this.state.email,
       address: this.state.address,
       reason: this.state.reason,
-      date: date,
+      date: this.props.dataTime.date,
+      birthday: date,
       selectedGender: this.state.selectedGender.value,     // Là 1 Object gồm value vs label
       doctorId: this.state.doctorId,
       timeType: this.state.timeType,

@@ -74,10 +74,10 @@ class OutStandingDoctor extends Component {
                       );
                     }
 
-                    // let nameVi = `${item.positionData.value_vi}, ${item.firstName} ${item.lastName}`;
-                    // let nameEn = `${item.positionData.value_en}, ${item.firstName} ${item.lastName}`
+                    let nameVi = `${item.positionData.value_vi}, ${item.firstName} ${item.lastName}`;
+                    let nameEn = `${item.positionData.value_en}, ${item.firstName} ${item.lastName}`
 
-                    let name = `${item.positionId}, ${item.firstName} ${item.lastName}`;
+                    // let name = `${item.positionId}, ${item.firstName} ${item.lastName}`;
 
                     return (
                       <div className="outstanding-doctor-customize" key={index}
@@ -93,9 +93,9 @@ class OutStandingDoctor extends Component {
                             ></div>
                           </div>
 
-                          <div className="outstanding-doctor-content">
-                            {/* <div className="title">{language === LANGUAGES.VI ? nameVi: nameEn}</div> */}
-                            <div className="title">{name}</div>
+                          <div className="outstanding-doctor-content">                         
+                            <div className="title">{language === LANGUAGES.VI ? nameVi: nameEn}</div>
+                            {/* <div className="title">{name}</div> */}
                             <div className="text-center">Cơ xương khớp</div>
                           </div>
                         </div>

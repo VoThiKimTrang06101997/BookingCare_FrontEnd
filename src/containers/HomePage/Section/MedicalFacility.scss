@@ -39,26 +39,38 @@
 
         .section-body {
             .facility-customize {
+                .title {
+                    color: #111;
+                    padding: 10px 0;
+                    font-size: 15px;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: #45c3d2;
+                        
+                        cursor: pointer;
+                    }
+                }
+
                 .bg-image {
                     width              : 350px;
                     height             : 180px;
-                    background         : url('../../../assets/images/medical-facility/benh-vien-dai-hoc-y-duoc.jpg');
+                    // background         : url('../../../assets/images/specialty/co-xuong-khop.jpg');
                     background-position: center center;
                     background-repeat  : no-repeat;
                     background-size    : cover;
                     background-color   : #eee;
                 }
 
-                .title {
+                .facility-title {
                     color      : #111;
-                    padding    : 5px 0;
-                    font-size  : 13px;
-                    // margin-left: -220px;
+                    padding    : 10px 0;
+                    font-size  : 15px;
+                    // font-weight: bold;
                     cursor     : pointer;
 
                     &:hover {
                         color: #45c3d2;
-                        ;
                         cursor: pointer;
                     }
                 }

@@ -47,25 +47,26 @@ export class DetailDoctor extends Component {
 
   render() {
     // console.log("Check Detail Doctor: ", this.props.match.params.id);
-    console.log("Check state: ", this.state);
+    // console.log("Check state: ", this.state);
     let { detailDoctor } = this.state;
 
-
     let {language} = this.props;
-    let name = '';
+    /**
+     * Code cách khác:
+     *     let name = '';
     if(detailDoctor && detailDoctor.positionId) {
       name = `${detailDoctor.positionId}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
     }
+     */
 
-
-    /** Cách code cho chức năng chuyển đổi ngôn ngữ
-     *  let {language} = this.props;
-        let nameVi = '', let nameEn = '' ;
+    // Cách code cho chức năng chuyển đổi ngôn ngữ 
+    let nameVi = "",
+    nameEn = "";
     if(detailDoctor && detailDoctor.positionData) {
-      let nameVi = `${detailDoctor.positionData.value_vi}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
-      let nameEn = `${detailDoctor.positionData.value_en}, ${detailDoctor.firstName} ${detailDoctor.lastName}`
+      nameVi = `${detailDoctor.positionData.value_vi}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
+      nameEn = `${detailDoctor.positionData.value_en}, ${detailDoctor.firstName} ${detailDoctor.lastName}`
     }
-    */
+
 
     return (
       <Fragment>
@@ -84,8 +85,8 @@ export class DetailDoctor extends Component {
 
             <div className="content-right">
               <div className="up">
-                {/* {language === LANGUAGES.VI ? nameVi : nameEn} */}
-                {name}
+                {language === LANGUAGES.VI ? nameVi : nameEn}
+                {/* {name} */}
               </div>
 
               <div className="down">

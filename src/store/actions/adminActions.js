@@ -2,6 +2,7 @@ import {
   createNewUserService,
   deleteUserService,
   editUserService,
+  getAllClinic,
   getAllCodeService,
   getAllDoctors,
   getAllSpecialty,
@@ -367,16 +368,20 @@ export const getRequiredDoctorInfor = () => {
       let resPayment = await getAllCodeService("PAYMENT");
       let resProvince = await getAllCodeService("PROVINCE");
       let resSpecialty = await getAllSpecialty();
+      let resClinic = await getAllClinic();
 
       if (resPrice && resPrice.errorCode === 0
           && resPayment && resPayment.errorCode === 0
           && resProvince && resProvince.errorCode === 0
-          && resSpecialty && resSpecialty.errorCode === 0) {
+          && resSpecialty && resSpecialty.errorCode === 0
+          && resClinic && resClinic.errorCode === 0
+          ) {
             let data = {
               resPrice: resPrice.data,
               resPayment: resPayment.data,
               resProvince: resProvince.data,
-              resSpecialty: resSpecialty.data
+              resSpecialty: resSpecialty.data,
+              resClinic: resClinic.data
             }
         dispatch(fetchRequiredDoctorInforSuccess(data));
       } else {

@@ -98,12 +98,16 @@ export class ProfileDoctor extends Component {
       dataTime,
       isShowPrice,
       isShowLinkDetail,
-      doctorId
+      doctorId,
     } = this.props;
 
-    let name = "";
+    // let name = "";
+    let nameVi = "",
+      nameEn = "";
     if (dataProfile && dataProfile.positionId) {
-      name = `${dataProfile.positionId}, ${dataProfile.firstName} ${dataProfile.lastName}`;
+      // name = `${dataProfile.positionId}, ${dataProfile.firstName} ${dataProfile.lastName}`;
+      nameVi = `${dataProfile.positionData.value_vi}, ${dataProfile.firstName} ${dataProfile.lastName}`;
+      nameEn = `${dataProfile.positionData.value_en}, ${dataProfile.firstName} ${dataProfile.lastName}`;
     }
 
     // console.log("Check state: ", this.state);
@@ -122,7 +126,11 @@ export class ProfileDoctor extends Component {
             ></div>
 
             <div className="content-right">
-              <div className="up">{name}</div>
+              {/* <div className="up">{name}</div> */}
+
+              <div className="up">
+                {language === LANGUAGES.VI ? nameVi: nameEn}
+              </div>
 
               <div className="down">
                 {isShowDescriptionDoctor === true ? (
@@ -139,12 +147,12 @@ export class ProfileDoctor extends Component {
             </div>
           </div>
 
-          {isShowLinkDetail === true && 
-          <div className="view-detail-doctor">
-            <Link to={`/detail-doctor/${doctorId}`}>Xem thêm</Link>
-            {/* <a href={`/detail-doctor/${doctorId}`}>Xem thêm</a> */}
-          </div>
-          }
+          {isShowLinkDetail === true && (
+            <div className="view-detail-doctor">
+              <Link to={`/detail-doctor/${doctorId}`}>Xem thêm</Link>
+              {/* <a href={`/detail-doctor/${doctorId}`}>Xem thêm</a> */}
+            </div>
+          )}
 
           {isShowPrice === true && (
             <div className="price">
